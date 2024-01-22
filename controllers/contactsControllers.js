@@ -37,7 +37,7 @@ export const deleteContact = async (req, res) => {
 export const createContact = async (req, res) => {
   const { error } = createContactSchema.validate(req.body);
   if (error) {
-    throw HttpError(400, "Bad Request");
+    throw HttpError(400, error.message);
   }
   const { name, email, phone } = req.body;
   const result = await addContact(name, email, phone);
