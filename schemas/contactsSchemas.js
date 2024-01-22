@@ -11,9 +11,12 @@ export const updateContactSchema = Joi.object({
   email: Joi.string().email(),
   phone: Joi.string(),
 }).custom((value, helpers) => {
-  // Перевірка, чи є хоча б одне поле у значенні
   if (!(value.name || value.email || value.phone)) {
-    return helpers.error("any.required");
+    throw new Joi.ValidationError(
+      "Body must have at least one field",
+      [{}, { message: "Body must have at least one field" }],
+      value
+    );
   }
   return value;
 }, "custom validation");
