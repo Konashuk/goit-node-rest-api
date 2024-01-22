@@ -1,7 +1,3 @@
-// const fs = require("fs/promises");
-// const path = require("path");
-// const { nanoid } = require("nanoid");
-
 import { promises as fs } from "fs";
 import path from "path";
 import { nanoid } from "nanoid";
@@ -14,8 +10,6 @@ const __dirname = dirname(__filename);
 const newFolderPath = "../db";
 const absolutePath = path.resolve(__dirname, newFolderPath);
 const contactsPath = path.join(absolutePath, "contacts.json");
-
-// const contactsPath = path.join(__dirname, "db/contacts.json");
 
 export async function listContacts() {
   try {
@@ -88,10 +82,3 @@ export async function updateContactById(id, data) {
     throw error;
   }
 }
-
-// module.exports = {
-//   listContacts,
-//   getContactById,
-//   addContact,
-//   removeContact,
-// };
