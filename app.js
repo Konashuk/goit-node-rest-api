@@ -1,6 +1,20 @@
 import express from "express";
 import morgan from "morgan";
 import cors from "cors";
+import mongoose from "mongoose";
+import dotenv from "dotenv";
+
+dotenv.config();
+
+const { DB_HOST } = process.env;
+mongoose
+  .connect(DB_HOST)
+  .then(() => app.listen(4000))
+
+  .catch((err) => {
+    console.error(err.message);
+    process.exit(1);
+  });
 
 import contactsRouter from "./routes/contactsRouter.js";
 
