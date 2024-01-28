@@ -20,3 +20,7 @@ export const updateContactSchema = Joi.object({
   }
   return value;
 }, "custom validation");
+
+export const updateFavoriteSchema = Joi.object({
+  favorite: Joi.boolean().required(),
+});
