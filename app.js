@@ -3,6 +3,10 @@ import morgan from "morgan";
 import cors from "cors";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import contactsRouter from "./routes/contactsRouter.js";
+import authRouter from "./routes/auth.js";
+
+const app = express();
 
 dotenv.config();
 
@@ -20,15 +24,13 @@ mongoose
     process.exit(1);
   });
 
-import contactsRouter from "./routes/contactsRouter.js";
-
-const app = express();
-
 app.use(morgan("tiny"));
 app.use(cors());
 app.use(express.json());
 
 app.use("/api/contacts", contactsRouter);
+app.use("/api/user", authRouter);
+// app.use();
 
 app.use((_, res) => {
   res.status(404).json({ message: "Route not found" });
