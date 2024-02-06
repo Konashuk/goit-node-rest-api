@@ -1,9 +1,10 @@
-import { User, authSchema } from "../models/users.js";
+import { User } from "../models/users.js";
 import { handelMoongoseError } from "../helpers/handelMoonError.js";
 import HttpError from "../helpers/HttpError.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
+import { authSchema } from "../schemas/authSchems.js";
 dotenv.config();
 
 const { SECRET_KEY } = process.env;
