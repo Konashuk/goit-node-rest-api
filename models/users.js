@@ -2,7 +2,7 @@ import { Schema, model } from "mongoose";
 import { handelMoongoseError } from "../helpers/handelMoonError.js";
 import Joi from "joi";
 
-const emailRegeps = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$/;
+export const emailRegeps = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$/;
 
 const userSchema = new Schema(
   {
@@ -28,10 +28,5 @@ const userSchema = new Schema(
 );
 
 userSchema.post("save", handelMoongoseError);
-
-export const authSchema = Joi.object({
-  email: Joi.string().pattern(emailRegeps).required(),
-  password: Joi.string().min(6).required(),
-});
 
 export const User = model("user", userSchema);
