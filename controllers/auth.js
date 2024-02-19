@@ -96,14 +96,17 @@ export const logout = async (req, res) => {
 };
 
 export const updateAvatar = async (req, res) => {
+  if (!req.file) {
+    throw HttpError(400, "Sorry, you need to upload avatar");
+  }
   try {
     const { _id } = req.user;
     const { path: tempUpload, originalname } = req.file;
     const fileName = `${_id}_${originalname}`;
-
     const resultUploadPath = path.join(avatarsDir, fileName);
 
-    const resize = await image.resize(250, 250).writeAsync(tempUpload);
+    const image = await Jimp.read(tempUpload);
+    await image.resize(250, 250).writeAsync(tempUpload);
 
     await fs.rename(tempUpload, resultUploadPath);
 
