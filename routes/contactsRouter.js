@@ -44,6 +44,7 @@ contactsRouter.put(
 
 contactsRouter.patch(
   "/:id/favorite",
+  checkId,
   authenticate,
   isValidId,
   cnrtWraper(updateStatusContact)
