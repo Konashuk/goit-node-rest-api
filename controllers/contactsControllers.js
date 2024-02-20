@@ -42,8 +42,6 @@ export const createContact = async (req, res) => {
     throw HttpError(400, error.message);
   }
   const { _id: owner } = req.user;
-  const { name, email, phone } = req.body;
-  // const result = await Contacts.create({ name, email, phone });
   const result = await Contacts.create({ ...req.body, owner });
 
   res.status(201).json(result);
