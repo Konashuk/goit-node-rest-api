@@ -6,6 +6,8 @@ import {
   logout,
   register,
   updateAvatar,
+  verifyEmail,
+  resendVerifyEmail,
 } from "../controllers/auth.js";
 import { authenticate } from "../middelwares/authenticate.js";
 import { upload } from "../middelwares/upload.js";
@@ -13,6 +15,10 @@ import { upload } from "../middelwares/upload.js";
 const authRouter = express.Router();
 
 authRouter.post("/register", cnrtWraper(register));
+
+authRouter.get("/verify/:verificationToken", cnrtWraper(verifyEmail));
+
+authRouter.post("/verify", cnrtWraper(resendVerifyEmail));
 
 authRouter.post("/login", cnrtWraper(login));
 

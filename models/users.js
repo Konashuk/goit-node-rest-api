@@ -1,6 +1,5 @@
 import { Schema, model } from "mongoose";
 import { handelMoongoseError } from "../helpers/handelMoonError.js";
-import Joi from "joi";
 
 export const emailRegeps = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$/;
 
@@ -26,6 +25,15 @@ const userSchema = new Schema(
     avatarURL: {
       type: String,
       require: true,
+    },
+
+    verify: {
+      type: Boolean,
+      default: false,
+    },
+    verificationToken: {
+      type: String,
+      required: [true, "Verify token is required"],
     },
   },
   { versionKey: false, timestamps: true }
